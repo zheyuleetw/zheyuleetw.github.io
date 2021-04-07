@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zheyuleetw.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="開場小聊-那些翻成中文也看不懂的英文2020年9月底剛從半導體轉軟體時，時常令我困惑的是那些看起來高冷的英文縮寫，散發神秘又高貴的氣息，其實踏入新的領域都無法避免這段用語熟悉陣痛期，然而，我感受到軟體工程的用語特別百花齊放，也特別的抽象，剛接觸程式語言時有海量的英文縮寫要理解，有些是說十遍也說不清的，我的經驗是聽不懂不需心急，先將表面的定義刻在心底，待時光一點一滴琢磨，隨著編程經歷增加會不斷有新的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每天一杯Java-D1 新手困惑詞彙集合">
+<meta property="og:url" content="https://zheyuleetw.github.io/2021/01/07/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D1-%E6%96%B0%E6%89%8B%E5%9B%B0%E6%83%91%E8%A9%9E%E5%BD%99%E9%9B%86%E5%90%88/index.html">
+<meta property="og:site_name" content="ZheYu&#39;s Blog">
+<meta property="og:description" content="開場小聊-那些翻成中文也看不懂的英文2020年9月底剛從半導體轉軟體時，時常令我困惑的是那些看起來高冷的英文縮寫，散發神秘又高貴的氣息，其實踏入新的領域都無法避免這段用語熟悉陣痛期，然而，我感受到軟體工程的用語特別百花齊放，也特別的抽象，剛接觸程式語言時有海量的英文縮寫要理解，有些是說十遍也說不清的，我的經驗是聽不懂不需心急，先將表面的定義刻在心底，待時光一點一滴琢磨，隨著編程經歷增加會不斷有新的">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://miro.medium.com/max/1400/1*VLSzyTPETYyDualJY5hKdg.jpeg">
+<meta property="og:image" content="https://miro.medium.com/max/1400/1*fIpYclQidVNH-9i3j4C8Rg.png">
+<meta property="article:published_time" content="2021-01-07T13:50:21.000Z">
+<meta property="article:modified_time" content="2021-04-07T15:00:57.852Z">
+<meta property="article:author" content="ZheYu Lee">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://miro.medium.com/max/1400/1*VLSzyTPETYyDualJY5hKdg.jpeg">
+
+<link rel="canonical" href="https://zheyuleetw.github.io/2021/01/07/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D1-%E6%96%B0%E6%89%8B%E5%9B%B0%E6%83%91%E8%A9%9E%E5%BD%99%E9%9B%86%E5%90%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>每天一杯Java-D1 新手困惑詞彙集合 | ZheYu's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6ZF12NBWTM"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-6ZF12NBWTM');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ZheYu's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">技術星球轉圈圈</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://zheyuleetw.github.io/2021/01/07/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D1-%E6%96%B0%E6%89%8B%E5%9B%B0%E6%83%91%E8%A9%9E%E5%BD%99%E9%9B%86%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ZheYu Lee">
+      <meta itemprop="description" content="技術星球轉圈圈">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZheYu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          每天一杯Java-D1 新手困惑詞彙集合
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-01-07 21:50:21" itemprop="dateCreated datePublished" datetime="2021-01-07T21:50:21+08:00">2021-01-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-04-07 23:00:57" itemprop="dateModified" datetime="2021-04-07T23:00:57+08:00">2021-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="開場小聊-那些翻成中文也看不懂的英文"><a href="#開場小聊-那些翻成中文也看不懂的英文" class="headerlink" title="開場小聊-那些翻成中文也看不懂的英文"></a>開場小聊-那些翻成中文也看不懂的英文</h2><p>2020年9月底剛從半導體轉軟體時，時常令我困惑的是那些看起來高冷的英文縮寫，散發神秘又高貴的氣息，其實踏入新的領域都無法避免這段用語熟悉陣痛期，然而，我感受到軟體工程的用語特別百花齊放，也特別的抽象，剛接觸程式語言時有海量的英文縮寫要理解，有些是說十遍也說不清的，我的經驗是聽不懂不需心急，先將表面的定義刻在心底，待時光一點一滴琢磨，隨著編程經歷增加會不斷有新的體會的，這裡就回憶一下當初令我頭痛的幾個縮寫，也順便複習與理清我的理解是否正確。</p>
+<span id="more"></span>
+
+<p>後記，時正搬遷部落格的2021年4月，想起之前在youtube上看的<a target="_blank" rel="noopener" href="https://youtu.be/O753uuutqH8">軟體工程:電腦科學的速成課</a>影集，講師Carrie Anne在從電腦硬體(如電晶體的物理原理到記憶體和中央處理器等)循序漸進到軟體的解說過程中就不斷強調**A new level of abstraction!**也就是硬體一直層層包裹成新的元件，例如數個電晶體組合被包裝成另一個成為布爾邏輯的元件，到軟體就是所謂物件導向編程的封裝特性，我覺得電腦科學這麼多的英文縮寫名詞，似乎也體現了這一點，將一長串的文字包裝一個縮寫，賦予新的概念和生命。</p>
+<div class="note success">
+            <p>A new level of abstraction!</p>
+          </div> 
+
+<h2 id="1-API-Application-Programming-Interface-應用程式介面"><a href="#1-API-Application-Programming-Interface-應用程式介面" class="headerlink" title="1.API - Application Programming Interface 應用程式介面"></a>1.API - Application Programming Interface 應用程式介面</h2><p>從英文理解，application是應用程式，programming是程式設計，interface是介面，聚合起來就是與設計或撰寫應用程式時相關的介面。</p>
+<p>從中文理解，對岸翻譯interface為接口，我舉得非常簡潔有力，顧名思義為程式和程式之間對接的窗口，這個窗口定義了可以呼叫的方法、可以請求的種類、如何呼叫方法、如何發出請求、數據的格式以及其他特定的規範。</p>
+<p>舉個生活化的例子，想像有一個四周環海的島嶼要與對外聯絡，必須造橋連接大陸，橋就是所謂的API，定義道路的寬度以及來往的規則等，有意想和島嶼建橋連接的城市都需要按照規定建造橋樑，一旦建造好了，符合資格的人就可以來往島嶼，也就是所謂特定的數據格式，重點是人不需要知道橋確切是如何建造的，這就是API的功能，封裝了各種類、方法和定義，方便程式與程式之間的溝通。</p>
+<p>具體Java的例子是JDBC API，是Java對資料庫連接所制訂的API，各家資料庫（MySQL、Oracle、DB2等）根據JDBC API寫好驅動程式，工程師就可以透過驅動程式與對應的資料庫連線。</p>
+<p><img src="https://miro.medium.com/max/1400/1*VLSzyTPETYyDualJY5hKdg.jpeg" alt="JDBC API"></p>
+<h2 id="2-OOP-Object-Oriented-Programming-物件導向編程"><a href="#2-OOP-Object-Oriented-Programming-物件導向編程" class="headerlink" title="2.OOP - Object Oriented Programming 物件導向編程"></a>2.OOP - Object Oriented Programming 物件導向編程</h2><p>對新手來說，第一個知識盲點大概是物件到底是什麼魔神仔，若時光倒流，我回到2020年的9月底，我會告訴自己先記住一句話，萬事萬物皆物件，舉凡一台腳踏車，一個銀行帳戶或是一台ATM，都是物件，在撰寫代碼時，傾向用代碼描述一個物件，包含這個物件的特性與行為，而<strong>應用程式的構成就是大大小小的物件以及物件之間互相發送訊息</strong>，這就是物件導向編程的思想，以一個銀行帳戶和ATM為例，撰寫代碼時，會描述這個帳戶持有人、存款金額、年息、貸款金額，而ATM則是具有存錢的功能以及領錢的功能</p>
+<h2 id="3-JDK-JRE-JVM-Java-Developmet-Kit-Java開發工具包"><a href="#3-JDK-JRE-JVM-Java-Developmet-Kit-Java開發工具包" class="headerlink" title="3.JDK/JRE/JVM/ - Java Developmet Kit Java開發工具包"></a>3.JDK/JRE/JVM/ - Java Developmet Kit Java開發工具包</h2><h2 id="4-JRE-Jave-Runtime-Environment-Java運行環境"><a href="#4-JRE-Jave-Runtime-Environment-Java運行環境" class="headerlink" title="4.JRE - Jave Runtime Environment Java運行環境"></a>4.JRE - Jave Runtime Environment Java運行環境</h2><h2 id="5-JVM-Java-Virtual-Machine-Java虛擬機器"><a href="#5-JVM-Java-Virtual-Machine-Java虛擬機器" class="headerlink" title="5.JVM - Java Virtual Machine  Java虛擬機器"></a>5.JVM - Java Virtual Machine  Java虛擬機器</h2><p><del>JDK是Jue De Kuai （覺得快）的縮寫，意思是安裝了就會覺得開發很快</del></p>
+<p>JDK顧名思義是使用Java語言開發所需要用到的工具包，裡面包含各種Java套件與工具，高頻使用的有java.util, java.lang等，機器裝上JDK就能使用這些套件，而JRE就是當機器需要執行Java程式時所需要的環境，就像魚必須在具有水的環境下才能生存，Java必須在安裝有JRE的機器上才能生存，JVM則是Java底層的執行機器，所以實際上我們是在自己的機器上安裝了一台Java的虛擬機器，這三者之間的關係可以由下面公式理解：</p>
+<div class="note success">
+            <p>JDK = JRE + Tools &amp; Tool APIs<br>JRE = JVM + Java SE API</p>
+          </div> 
+
+
+<p><img src="https://miro.medium.com/max/1400/1*fIpYclQidVNH-9i3j4C8Rg.png" alt="JDK/JRE/JVM"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=LdbuHW8XJh0&ab_channel=%E5%B0%9A%E7%A1%85%E8%B0%B7%E6%95%99%E8%82%B2">尚圭谷教學影片</a><br><a target="_blank" rel="noopener" href="https://www.mulesoft.com/resources/api/what-is-an-api">MuleSoft</a><br><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/">Oracle/javase/8</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%96%8B%E5%A0%B4%E5%B0%8F%E8%81%8A-%E9%82%A3%E4%BA%9B%E7%BF%BB%E6%88%90%E4%B8%AD%E6%96%87%E4%B9%9F%E7%9C%8B%E4%B8%8D%E6%87%82%E7%9A%84%E8%8B%B1%E6%96%87"><span class="nav-number">1.</span> <span class="nav-text">開場小聊-那些翻成中文也看不懂的英文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-API-Application-Programming-Interface-%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E4%BB%8B%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">1.API - Application Programming Interface 應用程式介面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-OOP-Object-Oriented-Programming-%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%B7%A8%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">2.OOP - Object Oriented Programming 物件導向編程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-JDK-JRE-JVM-Java-Developmet-Kit-Java%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7%E5%8C%85"><span class="nav-number">4.</span> <span class="nav-text">3.JDK&#x2F;JRE&#x2F;JVM&#x2F; - Java Developmet Kit Java開發工具包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-JRE-Jave-Runtime-Environment-Java%E9%81%8B%E8%A1%8C%E7%92%B0%E5%A2%83"><span class="nav-number">5.</span> <span class="nav-text">4.JRE - Jave Runtime Environment Java運行環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-JVM-Java-Virtual-Machine-Java%E8%99%9B%E6%93%AC%E6%A9%9F%E5%99%A8"><span class="nav-number">6.</span> <span class="nav-text">5.JVM - Java Virtual Machine  Java虛擬機器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">7.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZheYu Lee"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ZheYu Lee</p>
+  <div class="site-description" itemprop="description">技術星球轉圈圈</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zheyuleetw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zheyuleetw" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ken1019096@gmail.com" title="E-Mail → mailto:ken1019096@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/zylee.class" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;zylee.class" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZheYu Lee</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
