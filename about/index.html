@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"zheyuleetw.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="轉職的路上有些花朵也有一些石頭">
+  <meta name="description" content="轉職的路上有些花朵也有一些石頭                  var ctx &#x3D; document.getElementById(&#39;chart4020&#39;).getContext(&#39;2d&#39;);     var options &#x3D;   {   type:&#39;radar&#39;,   data:{        labels:[&#39;編程效率&#39;, &#39;數據分析&#39;, &#39;溝通能力&#39;, &#39;團隊合作&#39;, &#39;英語能力&#39;,">
 <meta property="og:type" content="website">
-<meta property="og:title" content="我">
+<meta property="og:title" content="ZheYu&#39;s Blog">
 <meta property="og:url" content="https://zheyuleetw.github.io/about/index.html">
 <meta property="og:site_name" content="ZheYu&#39;s Blog">
-<meta property="og:description" content="轉職的路上有些花朵也有一些石頭">
+<meta property="og:description" content="轉職的路上有些花朵也有一些石頭                  var ctx &#x3D; document.getElementById(&#39;chart4020&#39;).getContext(&#39;2d&#39;);     var options &#x3D;   {   type:&#39;radar&#39;,   data:{        labels:[&#39;編程效率&#39;, &#39;數據分析&#39;, &#39;溝通能力&#39;, &#39;團隊合作&#39;, &#39;英語能力&#39;,">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-04-07T15:04:38.000Z">
-<meta property="article:modified_time" content="2021-04-10T06:01:53.166Z">
+<meta property="article:modified_time" content="2021-04-10T14:56:39.173Z">
 <meta property="article:author" content="ZheYu Lee">
 <meta name="twitter:card" content="summary">
 
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>我 | ZheYu's Blog
+  <title> | ZheYu's Blog
 </title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6ZF12NBWTM"></script>
@@ -181,7 +181,7 @@
     <div class="post-block" lang="zh-TW">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">我
+<h1 class="post-title" itemprop="name headline">
 </h1>
 
 <div class="post-meta">
@@ -195,7 +195,81 @@
       
       
       <div class="post-body">
-          <p>轉職的路上有些花朵也有一些石頭</p>
+          <center>轉職的路上有些花朵也有一些石頭</center>
+
+
+
+
+<div style="width: 100%;margin: 0 auto">
+    <canvas id="chart4020" style="height: 300px"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('chart4020').getContext('2d');
+    var options =   {
+  type:'radar',
+  data:{
+       labels:['編程效率', '數據分析', '溝通能力', '團隊合作', '英語能力', '簡報撰寫效率'],
+ datasets:[{
+       label: '日間',
+       data: [9, 10, 9, 9, 9, 9],
+       backgroundColor: 'rgba(38,166,237,0.5)',
+       borderColor: 'rgba(38,166,237,1)', 
+       pointBackgroundColor: 'rgba(38,166,237,1)', 
+       pointRadius: 5
+  
+   },{
+       label: '夜間',
+       data: [10, 8, 9, 9, 9, 5],
+       backgroundColor: 'rgba(236,64,122,0.5)',
+       borderColor: 'rgba(236,64,122,1)', 
+       pointBackgroundColor:  'rgba(236,64,122,1)', 
+       pointRadius: 5
+
+   }]
+
+  },
+  
+  legend: {
+    labels: {
+      fontColor: 'rgba(255,255,255,0.75)'
+    }
+
+  },
+  options: {
+      tooltips:{
+          callbacks: {
+          title: (tooltipItem, data) => data.labels[tooltipItem[0].index]
+              }
+               },
+      responsive: true,
+      title: {
+      display: true,
+      text: '能力分佈'
+      },
+      elements:{
+          line:{
+               borderWidth: 3
+          }
+      },
+      scale:{
+            ticks:{
+                   beginAtZero: true,
+
+            }
+        
+      }
+      
+
+  }
+
+}
+
+;
+    new Chart(ctx, options);
+</script>
+
+
 
       </div>
       
