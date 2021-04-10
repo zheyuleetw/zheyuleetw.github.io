@@ -20,22 +20,22 @@
     var CONFIG = {"hostname":"zheyuleetw.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="開場小聊-到底是大寫還是小寫剛開始練習用Java語言撰寫程式時不懂的命名規則的重要性，因爲規模小，類或物件的方法和變數沒有那麼龐雜，在呼叫方法和使用變數時，即便忘了當初的命名也可以回頭輕鬆查找，然而，當程式越長越巨，有上百上千個變數時，沒有規則的命名撰寫時容易出錯，甚至成了拖慢開發速度的累贅，因此養成命名的好習慣對我來說相當重要，不但方便開發，維護也少了許多坑，這篇就來談談Java命名規則與規範。">
+  <meta name="description" content="多態特性的兩個使用前提 建立在繼承性之上多態從字面上解釋為事物的多個型態，從繼承性的角度解釋即為繼承同一個父類的各種子類，這些子類是父類的多個型態，這是典型的多態體現：子類的實例宣告為父類類型。  建立在方法的重寫言外之意，多態只適用於方法，不適用於屬性，屬性並沒有重寫的機制。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每天一杯Java-D2-命名規則與規範">
-<meta property="og:url" content="https://zheyuleetw.github.io/2021/01/13/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D2-%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E8%88%87%E8%A6%8F%E7%AF%84/index.html">
+<meta property="og:title" content="每天一杯Java-D5-淺談物件導向:多態">
+<meta property="og:url" content="https://zheyuleetw.github.io/2021/01/18/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D5-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E5%A4%9A%E6%85%8B/index.html">
 <meta property="og:site_name" content="ZheYu&#39;s Blog">
-<meta property="og:description" content="開場小聊-到底是大寫還是小寫剛開始練習用Java語言撰寫程式時不懂的命名規則的重要性，因爲規模小，類或物件的方法和變數沒有那麼龐雜，在呼叫方法和使用變數時，即便忘了當初的命名也可以回頭輕鬆查找，然而，當程式越長越巨，有上百上千個變數時，沒有規則的命名撰寫時容易出錯，甚至成了拖慢開發速度的累贅，因此養成命名的好習慣對我來說相當重要，不但方便開發，維護也少了許多坑，這篇就來談談Java命名規則與規範。">
+<meta property="og:description" content="多態特性的兩個使用前提 建立在繼承性之上多態從字面上解釋為事物的多個型態，從繼承性的角度解釋即為繼承同一個父類的各種子類，這些子類是父類的多個型態，這是典型的多態體現：子類的實例宣告為父類類型。  建立在方法的重寫言外之意，多態只適用於方法，不適用於屬性，屬性並沒有重寫的機制。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://miro.medium.com/max/1400/1*fwUPsDFlvLbRNJC9vJxkvg.png">
-<meta property="article:published_time" content="2021-01-13T06:04:09.000Z">
-<meta property="article:modified_time" content="2021-04-10T07:12:40.389Z">
+<meta property="article:published_time" content="2021-01-18T15:16:44.000Z">
+<meta property="article:modified_time" content="2021-04-10T15:45:09.775Z">
 <meta property="article:author" content="ZheYu Lee">
+<meta property="article:tag" content="Shiba">
 <meta property="article:tag" content="Java">
+<meta property="article:tag" content="OOP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://miro.medium.com/max/1400/1*fwUPsDFlvLbRNJC9vJxkvg.png">
 
-<link rel="canonical" href="https://zheyuleetw.github.io/2021/01/13/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D2-%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E8%88%87%E8%A6%8F%E7%AF%84/">
+<link rel="canonical" href="https://zheyuleetw.github.io/2021/01/18/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D5-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E5%A4%9A%E6%85%8B/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>每天一杯Java-D2-命名規則與規範 | ZheYu's Blog</title>
+  <title>每天一杯Java-D5-淺談物件導向:多態 | ZheYu's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6ZF12NBWTM"></script>
     <script>
@@ -179,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://zheyuleetw.github.io/2021/01/13/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D2-%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E8%88%87%E8%A6%8F%E7%AF%84/">
+    <link itemprop="mainEntityOfPage" href="https://zheyuleetw.github.io/2021/01/18/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D5-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E5%A4%9A%E6%85%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -192,7 +192,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          每天一杯Java-D2-命名規則與規範
+          每天一杯Java-D5-淺談物件導向:多態
         </h1>
 
         <div class="post-meta">
@@ -202,14 +202,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2021-01-13 14:04:09" itemprop="dateCreated datePublished" datetime="2021-01-13T14:04:09+08:00">2021-01-13</time>
+              <time title="創建時間：2021-01-18 23:16:44" itemprop="dateCreated datePublished" datetime="2021-01-18T23:16:44+08:00">2021-01-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-04-10 15:12:40" itemprop="dateModified" datetime="2021-04-10T15:12:40+08:00">2021-04-10</time>
+                <time title="修改時間：2021-04-10 23:45:09" itemprop="dateModified" datetime="2021-04-10T23:45:09+08:00">2021-04-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,23 +232,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="開場小聊-到底是大寫還是小寫"><a href="#開場小聊-到底是大寫還是小寫" class="headerlink" title="開場小聊-到底是大寫還是小寫"></a>開場小聊-到底是大寫還是小寫</h2><p>剛開始練習用Java語言撰寫程式時不懂的命名規則的重要性，因爲規模小，類或物件的方法和變數沒有那麼龐雜，在呼叫方法和使用變數時，即便忘了當初的命名也可以回頭輕鬆查找，然而，當程式越長越巨，有上百上千個變數時，沒有規則的命名撰寫時容易出錯，甚至成了拖慢開發速度的累贅，因此養成命名的好習慣對我來說相當重要，不但方便開發，維護也少了許多坑，這篇就來談談Java命名規則與規範。</p>
-<span id="more"></span>
+        <h2 id="多態特性的兩個使用前提"><a href="#多態特性的兩個使用前提" class="headerlink" title="多態特性的兩個使用前提"></a>多態特性的兩個使用前提</h2><ol>
+<li><p>建立在繼承性之上<br>多態從字面上解釋為事物的多個型態，從繼承性的角度解釋即為繼承同一個父類的各種子類，這些子類是父類的多個型態，這是典型的多態體現：子類的實例宣告為父類類型。</p>
+</li>
+<li><p>建立在方法的重寫<br>言外之意，多態只適用於方法，不適用於屬性，屬性並沒有重寫的機制。</p>
+<span id="more"></span></li>
+</ol>
+<p>這邊同樣以繼承Shiba類的BlackShiba類和OrangeShiba類做舉例，在測試類中，將BlackShiba類和OrangeShiba類的實例宣告成Shiba類：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getShibaTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	Shiba orangeShiba = <span class="keyword">new</span> OrangeShiba();</span><br><span class="line">	Shiba blackShiba = <span class="keyword">new</span> BlackShiba();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2 id="識別字-Identifier"><a href="#識別字-Identifier" class="headerlink" title="識別字 Identifier"></a>識別字 Identifier</h2><p>凡事可以自己取名字的地方都稱為識別字，例如package的名字、類名、介面名、方法名、變數名以及常數名等都是識別字。</p>
-<h2 id="Java命名規則"><a href="#Java命名規則" class="headerlink" title="Java命名規則"></a>Java命名規則</h2><p>不遵守規則編譯時會報錯，所以一定要遵守，共有以下五點。</p>
-<p>1.可以為26個英文字母大小寫、0到9的數字、_或是$<br>ex. helloWorld, javaBeginner2020, _dataService</p>
-<p>2.不可以數字開頭，以下例子皆會報錯<br>ex. 5566Legend, 7Flowers</p>
-<p>3.不可以使用Java關鍵字及保留字，但是可以包含<br>根據<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html">JDK8的官方文檔</a>，共有五十個關鍵字與保留字<br>ex. synchronized(關鍵字),new(關鍵字) goto(保留字) 會報錯<br>ex. synchronizedLegend, newValue 是可以的</p>
-<p>4.不可包含空格，以下例子會報錯<br>ex. hello world, best method</p>
-<p>5.嚴格區分大小寫，helloWorld與helloworld是不一樣的兩個職別字</p>
-<h2 id="命名規範"><a href="#命名規範" class="headerlink" title="命名規範"></a>命名規範</h2><p>不遵守編譯不會報錯，但維護的人會爆氣，遵循命名規範不但好閱讀，也避免自己的開發中因為大小寫錯誤而報錯。</p>
-<p>1.package名：全部為小寫<br>ex. com.hello.controller, com.hello.model</p>
-<p>2.類名和介面名：若識別字是由兩個或兩個以上的單字組成，每個單字的第一個字母大寫，其餘小寫，稱為帕斯卡命名規範（PascalNamingConvention）<br>ex. HelloWorld, HttpServletRequest, Runnable, List, ArrayList, BlackShiba</p>
-<p>3.方法名和變數名：若識別字是由兩個或兩個以上的單字組成，第一個單字全小寫，而後每個單字的第一個字母大寫，其餘小寫，此種命名法看起來像駱駝，因此稱為駱駝式命名規範（camelNamingConvention）<br>ex. doGet, doPost, compareTo, equals, ofPattern, getDayOfWeek</p>
-<p>4.常數：全部大寫<br>ex. EAST, MAX, MIN, API_CONSTANTS</p>
-<p><img src="https://miro.medium.com/max/1400/1*fwUPsDFlvLbRNJC9vJxkvg.png" alt="來自維基百科的駱駝"></p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=qbaVqgt91ro&ab_channel=%E5%B0%9A%E7%A1%85%E8%B0%B7%E6%95%99%E8%82%B2">尚圭谷教學影片</a><br><a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html">Oracle/javase</a></p>
+<p>因為宣告為Shiba類型，此時在調用orangeShiba物件以及blackShiba物件只能調用Shiba類中定義的方法和屬性，換句話說，現在這兩個物件調用OrangeShiba和BlackShiba的say()方法時就會報錯，因為在Shiba類中並沒有宣告say()方法。</p>
+<h2 id="多態是運行時行為，非編譯時行為"><a href="#多態是運行時行為，非編譯時行為" class="headerlink" title="多態是運行時行為，非編譯時行為"></a>多態是運行時行為，非編譯時行為</h2><p>此外，調用bark() 方法時，在理解上我們應當是調用父類Shiba的bark()，但執行的結果會是執行子類重寫的方法，我們可以看做在多態的狀況下，父類的方法為虛擬方法，父類根據賦予的物件，動態地調用子類的方法，這類調用方法稱作<em>動態綁定</em>或是<em>晚綁定</em>，因此，多態性實際上是運行時的行為，並非編譯時行為。</p>
+<h2 id="通用性"><a href="#通用性" class="headerlink" title="通用性"></a>通用性</h2><p>當有一個方法需要傳入參數，若直接將傳入的型別宣告為OrangeShiba類或BlackShiba類，那麼這個方法就只適用於這兩個類中其中一種，若宣告為Shiba類，兩種子類的實例都可以作為參數傳入，在此我們新增一個ShibaBabysitter類，這個類有<code>getShibaColor(Shiba shiba)</code>方法，傳入參數型別為Shiba.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShibaBabysitter</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getShibaName</span><span class="params">(Shiba shiba)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(shiba <span class="keyword">instanceof</span> OrangeShiba) &#123;</span><br><span class="line">		OrangeShiba orangeShiba = (OrangeShiba)shiba;</span><br><span class="line">		<span class="keyword">return</span> orangeShiba.name;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">if</span>(shiba <span class="keyword">instanceof</span> BlackShiba) &#123;</span><br><span class="line">		BlackShiba blackShiba = (BlackShiba)shiba;</span><br><span class="line">		<span class="keyword">return</span> blackShiba.name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;It is not a Shiba!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>另外寫一個測試方法，實例化OrangeShiba、BlackShiba以及ShibaBabysitter類：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getShibaNameTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Shiba orangeShiba = <span class="keyword">new</span> OrangeShiba();</span><br><span class="line">       orangeShiba.name = <span class="string">&quot;小湯圓&quot;</span>;</span><br><span class="line">	Shiba blackShiba = <span class="keyword">new</span> BlackShiba();</span><br><span class="line">       blackShiba.name = <span class="string">&quot;豆乾&quot;</span>;</span><br><span class="line">	ShibaBadysitter shibaBadysitter = <span class="keyword">new</span> ShibaBadysitter();</span><br><span class="line">	System.out.println(shibaBadysitter.getShibaName(orangeShiba)); <span class="comment">//小湯圓</span></span><br><span class="line">	System.out.println(shibaBadysitter.getShibaName(blackShiba)); <span class="comment">//豆乾</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/">jdk1.8 API</a><br><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/java/concepts/index.html">The Java Tutorials</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ArTiU9HR5Kw&list=PLmOn9nNkQxJH0qBIrtV6otI0Ep4o2q67A&index=258&ab_channel=%E5%B0%9A%E7%A1%85%E8%B0%B7IT%E5%9F%B9%E8%AE%AD%E5%AD%A6%E6%A0%A1">尚圭谷教學影片</a></p>
 
     </div>
 
@@ -258,7 +259,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/Shiba/" rel="tag"># Shiba</a>
               <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/OOP/" rel="tag"># OOP</a>
           </div>
 
         
@@ -267,13 +270,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/07/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D1-%E6%96%B0%E6%89%8B%E5%9B%B0%E6%83%91%E8%A9%9E%E5%BD%99%E9%9B%86%E5%90%88/" rel="prev" title="每天一杯Java-D1 新手困惑詞彙集合">
-      <i class="fa fa-chevron-left"></i> 每天一杯Java-D1 新手困惑詞彙集合
+    <a href="/2021/01/17/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D4-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E7%B9%BC%E6%89%BF/" rel="prev" title="每天一杯Java-D4-淺談物件導向:繼承">
+      <i class="fa fa-chevron-left"></i> 每天一杯Java-D4-淺談物件導向:繼承
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/01/14/Angular%E5%B0%8F%E9%81%8A%E6%88%B2-Round1-%E7%B5%84%E4%BB%B6%E9%96%93%E6%BA%9D%E9%80%9A%E5%9B%9B%E7%A8%AE%E6%96%B9%E6%B3%95/" rel="next" title="Angular小遊戲-Round1-組件間溝通四種方法">
-      Angular小遊戲-Round1-組件間溝通四種方法 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -332,7 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%96%8B%E5%A0%B4%E5%B0%8F%E8%81%8A-%E5%88%B0%E5%BA%95%E6%98%AF%E5%A4%A7%E5%AF%AB%E9%82%84%E6%98%AF%E5%B0%8F%E5%AF%AB"><span class="nav-number">1.</span> <span class="nav-text">開場小聊-到底是大寫還是小寫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AD%98%E5%88%A5%E5%AD%97-Identifier"><span class="nav-number">2.</span> <span class="nav-text">識別字 Identifier</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87"><span class="nav-number">3.</span> <span class="nav-text">Java命名規則</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E8%A6%8F%E7%AF%84"><span class="nav-number">4.</span> <span class="nav-text">命名規範</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%85%8B%E7%89%B9%E6%80%A7%E7%9A%84%E5%85%A9%E5%80%8B%E4%BD%BF%E7%94%A8%E5%89%8D%E6%8F%90"><span class="nav-number">1.</span> <span class="nav-text">多態特性的兩個使用前提</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%85%8B%E6%98%AF%E9%81%8B%E8%A1%8C%E6%99%82%E8%A1%8C%E7%82%BA%EF%BC%8C%E9%9D%9E%E7%B7%A8%E8%AD%AF%E6%99%82%E8%A1%8C%E7%82%BA"><span class="nav-number">2.</span> <span class="nav-text">多態是運行時行為，非編譯時行為</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">通用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
