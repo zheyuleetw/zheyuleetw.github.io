@@ -20,23 +20,22 @@
     var CONFIG = {"hostname":"zheyuleetw.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="開場小聊-那些翻成中文也看不懂的英文2020年9月底剛從半導體轉軟體時，時常令我困惑的是那些看起來高冷的英文縮寫，散發神秘又高貴的氣息，其實踏入新的領域都無法避免這段用語熟悉陣痛期，然而，我感受到軟體工程的用語特別百花齊放，也特別的抽象，剛接觸程式語言時有海量的英文縮寫要理解，有些是說十遍也說不清的，我的經驗是聽不懂不需心急，先將表面的定義刻在心底，待時光一點一滴琢磨，隨著編程經歷增加會不斷有新的">
+  <meta name="description" content="開場小聊-到底是大寫還是小寫剛開始練習用Java語言撰寫程式時不懂的命名規則的重要性，因爲規模小，類或物件的方法和變數沒有那麼龐雜，在呼叫方法和使用變數時，即便忘了當初的命名也可以回頭輕鬆查找，然而，當程式越長越巨，有上百上千個變數時，沒有規則的命名撰寫時容易出錯，甚至成了拖慢開發速度的累贅，因此養成命名的好習慣對我來說相當重要，不但方便開發，維護也少了許多坑，這篇就來談談Java命名規則與規範。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每天一杯Java-D1 新手困惑詞彙集合">
-<meta property="og:url" content="https://zheyuleetw.github.io/2021/01/07/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D1-%E6%96%B0%E6%89%8B%E5%9B%B0%E6%83%91%E8%A9%9E%E5%BD%99%E9%9B%86%E5%90%88/index.html">
+<meta property="og:title" content="每天一杯Java-D2-命名規則與規範">
+<meta property="og:url" content="https://zheyuleetw.github.io/2021/01/13/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D2-%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E8%88%87%E8%A6%8F%E7%AF%84/index.html">
 <meta property="og:site_name" content="ZheYu&#39;s Blog">
-<meta property="og:description" content="開場小聊-那些翻成中文也看不懂的英文2020年9月底剛從半導體轉軟體時，時常令我困惑的是那些看起來高冷的英文縮寫，散發神秘又高貴的氣息，其實踏入新的領域都無法避免這段用語熟悉陣痛期，然而，我感受到軟體工程的用語特別百花齊放，也特別的抽象，剛接觸程式語言時有海量的英文縮寫要理解，有些是說十遍也說不清的，我的經驗是聽不懂不需心急，先將表面的定義刻在心底，待時光一點一滴琢磨，隨著編程經歷增加會不斷有新的">
+<meta property="og:description" content="開場小聊-到底是大寫還是小寫剛開始練習用Java語言撰寫程式時不懂的命名規則的重要性，因爲規模小，類或物件的方法和變數沒有那麼龐雜，在呼叫方法和使用變數時，即便忘了當初的命名也可以回頭輕鬆查找，然而，當程式越長越巨，有上百上千個變數時，沒有規則的命名撰寫時容易出錯，甚至成了拖慢開發速度的累贅，因此養成命名的好習慣對我來說相當重要，不但方便開發，維護也少了許多坑，這篇就來談談Java命名規則與規範。">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://miro.medium.com/max/1400/1*VLSzyTPETYyDualJY5hKdg.jpeg">
-<meta property="og:image" content="https://miro.medium.com/max/1400/1*fIpYclQidVNH-9i3j4C8Rg.png">
-<meta property="article:published_time" content="2021-01-07T13:50:21.000Z">
-<meta property="article:modified_time" content="2021-04-10T07:10:02.419Z">
+<meta property="og:image" content="https://miro.medium.com/max/1400/1*fwUPsDFlvLbRNJC9vJxkvg.png">
+<meta property="article:published_time" content="2021-01-13T06:04:09.000Z">
+<meta property="article:modified_time" content="2021-04-10T07:12:40.389Z">
 <meta property="article:author" content="ZheYu Lee">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://miro.medium.com/max/1400/1*VLSzyTPETYyDualJY5hKdg.jpeg">
+<meta name="twitter:image" content="https://miro.medium.com/max/1400/1*fwUPsDFlvLbRNJC9vJxkvg.png">
 
-<link rel="canonical" href="https://zheyuleetw.github.io/2021/01/07/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D1-%E6%96%B0%E6%89%8B%E5%9B%B0%E6%83%91%E8%A9%9E%E5%BD%99%E9%9B%86%E5%90%88/">
+<link rel="canonical" href="https://zheyuleetw.github.io/2021/01/13/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D2-%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E8%88%87%E8%A6%8F%E7%AF%84/">
 
 
 <script id="page-configurations">
@@ -49,7 +48,7 @@
   };
 </script>
 
-  <title>每天一杯Java-D1 新手困惑詞彙集合 | ZheYu's Blog</title>
+  <title>每天一杯Java-D2-命名規則與規範 | ZheYu's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6ZF12NBWTM"></script>
     <script>
@@ -180,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://zheyuleetw.github.io/2021/01/07/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D1-%E6%96%B0%E6%89%8B%E5%9B%B0%E6%83%91%E8%A9%9E%E5%BD%99%E9%9B%86%E5%90%88/">
+    <link itemprop="mainEntityOfPage" href="https://zheyuleetw.github.io/2021/01/13/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D2-%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E8%88%87%E8%A6%8F%E7%AF%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -193,7 +192,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          每天一杯Java-D1 新手困惑詞彙集合
+          每天一杯Java-D2-命名規則與規範
         </h1>
 
         <div class="post-meta">
@@ -203,14 +202,14 @@
               </span>
               <span class="post-meta-item-text">發表於</span>
 
-              <time title="創建時間：2021-01-07 21:50:21" itemprop="dateCreated datePublished" datetime="2021-01-07T21:50:21+08:00">2021-01-07</time>
+              <time title="創建時間：2021-01-13 14:04:09" itemprop="dateCreated datePublished" datetime="2021-01-13T14:04:09+08:00">2021-01-13</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-04-10 15:10:02" itemprop="dateModified" datetime="2021-04-10T15:10:02+08:00">2021-04-10</time>
+                <time title="修改時間：2021-04-10 15:12:40" itemprop="dateModified" datetime="2021-04-10T15:12:40+08:00">2021-04-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,29 +232,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="開場小聊-那些翻成中文也看不懂的英文"><a href="#開場小聊-那些翻成中文也看不懂的英文" class="headerlink" title="開場小聊-那些翻成中文也看不懂的英文"></a>開場小聊-那些翻成中文也看不懂的英文</h2><p>2020年9月底剛從半導體轉軟體時，時常令我困惑的是那些看起來高冷的英文縮寫，散發神秘又高貴的氣息，其實踏入新的領域都無法避免這段用語熟悉陣痛期，然而，我感受到軟體工程的用語特別百花齊放，也特別的抽象，剛接觸程式語言時有海量的英文縮寫要理解，有些是說十遍也說不清的，我的經驗是聽不懂不需心急，先將表面的定義刻在心底，待時光一點一滴琢磨，隨著編程經歷增加會不斷有新的體會的，這裡就回憶一下當初令我頭痛的幾個縮寫，也順便複習與理清我的理解是否正確。</p>
+        <h2 id="開場小聊-到底是大寫還是小寫"><a href="#開場小聊-到底是大寫還是小寫" class="headerlink" title="開場小聊-到底是大寫還是小寫"></a>開場小聊-到底是大寫還是小寫</h2><p>剛開始練習用Java語言撰寫程式時不懂的命名規則的重要性，因爲規模小，類或物件的方法和變數沒有那麼龐雜，在呼叫方法和使用變數時，即便忘了當初的命名也可以回頭輕鬆查找，然而，當程式越長越巨，有上百上千個變數時，沒有規則的命名撰寫時容易出錯，甚至成了拖慢開發速度的累贅，因此養成命名的好習慣對我來說相當重要，不但方便開發，維護也少了許多坑，這篇就來談談Java命名規則與規範。</p>
 <span id="more"></span>
 
-<p>後記，時正搬遷部落格的2021年4月，想起之前在youtube上看的<a target="_blank" rel="noopener" href="https://youtu.be/O753uuutqH8">軟體工程:電腦科學的速成課</a>影集，講師Carrie Anne在從電腦硬體(如電晶體的物理原理到記憶體和中央處理器等)循序漸進到軟體的解說過程中就不斷強調*A new level of abstraction!*也就是硬體一直層層包裹成新的元件，例如數個電晶體組合被包裝成另一個成為布爾邏輯的元件，到軟體就是所謂物件導向編程的封裝特性，我覺得電腦科學這麼多的英文縮寫名詞，似乎也體現了這一點，將一長串的文字包裝一個縮寫，賦予新的概念和生命。</p>
-<div class="note success">
-            <p>A new level of abstraction!</p>
-          </div> 
-
-<h2 id="1-API-Application-Programming-Interface-應用程式介面"><a href="#1-API-Application-Programming-Interface-應用程式介面" class="headerlink" title="1.API - Application Programming Interface 應用程式介面"></a>1.API - Application Programming Interface 應用程式介面</h2><p>從英文理解，application是應用程式，programming是程式設計，interface是介面，聚合起來就是與設計或撰寫應用程式時相關的介面。</p>
-<p>從中文理解，對岸翻譯interface為接口，我舉得非常簡潔有力，顧名思義為程式和程式之間對接的窗口，這個窗口定義了可以呼叫的方法、可以請求的種類、如何呼叫方法、如何發出請求、數據的格式以及其他特定的規範。</p>
-<p>舉個生活化的例子，想像有一個四周環海的島嶼要與對外聯絡，必須造橋連接大陸，橋就是所謂的API，定義道路的寬度以及來往的規則等，有意想和島嶼建橋連接的城市都需要按照規定建造橋樑，一旦建造好了，符合資格的人就可以來往島嶼，也就是所謂特定的數據格式，重點是人不需要知道橋確切是如何建造的，這就是API的功能，封裝了各種類、方法和定義，方便程式與程式之間的溝通。</p>
-<p>具體Java的例子是JDBC API，是Java對資料庫連接所制訂的API，各家資料庫（MySQL、Oracle、DB2等）根據JDBC API寫好驅動程式，工程師就可以透過驅動程式與對應的資料庫連線。</p>
-<p><img src="https://miro.medium.com/max/1400/1*VLSzyTPETYyDualJY5hKdg.jpeg" alt="JDBC API"></p>
-<h2 id="2-OOP-Object-Oriented-Programming-物件導向編程"><a href="#2-OOP-Object-Oriented-Programming-物件導向編程" class="headerlink" title="2.OOP - Object Oriented Programming 物件導向編程"></a>2.OOP - Object Oriented Programming 物件導向編程</h2><p>對新手來說，第一個知識盲點大概是物件到底是什麼魔神仔，若時光倒流，我回到2020年的9月底，我會告訴自己先記住一句話，萬事萬物皆物件，舉凡一台腳踏車，一個銀行帳戶或是一台ATM，都是物件，在撰寫代碼時，傾向用代碼描述一個物件，包含這個物件的特性與行為，而<strong>應用程式的構成就是大大小小的物件以及物件之間互相發送訊息</strong>，這就是物件導向編程的思想，以一個銀行帳戶和ATM為例，撰寫代碼時，會描述這個帳戶持有人、存款金額、年息、貸款金額，而ATM則是具有存錢的功能以及領錢的功能</p>
-<h2 id="3-JDK-JRE-JVM-Java-Developmet-Kit-Java開發工具包"><a href="#3-JDK-JRE-JVM-Java-Developmet-Kit-Java開發工具包" class="headerlink" title="3.JDK/JRE/JVM/ - Java Developmet Kit Java開發工具包"></a>3.JDK/JRE/JVM/ - Java Developmet Kit Java開發工具包</h2><h2 id="4-JRE-Jave-Runtime-Environment-Java運行環境"><a href="#4-JRE-Jave-Runtime-Environment-Java運行環境" class="headerlink" title="4.JRE - Jave Runtime Environment Java運行環境"></a>4.JRE - Jave Runtime Environment Java運行環境</h2><h2 id="5-JVM-Java-Virtual-Machine-Java虛擬機器"><a href="#5-JVM-Java-Virtual-Machine-Java虛擬機器" class="headerlink" title="5.JVM - Java Virtual Machine  Java虛擬機器"></a>5.JVM - Java Virtual Machine  Java虛擬機器</h2><p><del>JDK是Jue De Kuai （覺得快）的縮寫，意思是安裝了就會覺得開發很快</del></p>
-<p>JDK顧名思義是使用Java語言開發所需要用到的工具包，裡面包含各種Java套件與工具，高頻使用的有java.util, java.lang等，機器裝上JDK就能使用這些套件，而JRE就是當機器需要執行Java程式時所需要的環境，就像魚必須在具有水的環境下才能生存，Java必須在安裝有JRE的機器上才能生存，JVM則是Java底層的執行機器，所以實際上我們是在自己的機器上安裝了一台Java的虛擬機器，這三者之間的關係可以由下面公式理解：</p>
-<div class="note success">
-            <p>JDK = JRE + Tools &amp; Tool APIs<br>JRE = JVM + Java SE API</p>
-          </div> 
-
-
-<p><img src="https://miro.medium.com/max/1400/1*fIpYclQidVNH-9i3j4C8Rg.png" alt="JDK/JRE/JVM"></p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=LdbuHW8XJh0&ab_channel=%E5%B0%9A%E7%A1%85%E8%B0%B7%E6%95%99%E8%82%B2">尚圭谷教學影片</a><br><a target="_blank" rel="noopener" href="https://www.mulesoft.com/resources/api/what-is-an-api">MuleSoft</a><br><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/">Oracle/javase/8</a></p>
+<h2 id="識別字-Identifier"><a href="#識別字-Identifier" class="headerlink" title="識別字 Identifier"></a>識別字 Identifier</h2><p>凡事可以自己取名字的地方都稱為識別字，例如package的名字、類名、介面名、方法名、變數名以及常數名等都是識別字。</p>
+<h2 id="Java命名規則"><a href="#Java命名規則" class="headerlink" title="Java命名規則"></a>Java命名規則</h2><p>不遵守規則編譯時會報錯，所以一定要遵守，共有以下五點。</p>
+<p>1.可以為26個英文字母大小寫、0到9的數字、_或是$<br>ex. helloWorld, javaBeginner2020, _dataService</p>
+<p>2.不可以數字開頭，以下例子皆會報錯<br>ex. 5566Legend, 7Flowers</p>
+<p>3.不可以使用Java關鍵字及保留字，但是可以包含<br>根據<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html">JDK8的官方文檔</a>，共有五十個關鍵字與保留字<br>ex. synchronized(關鍵字),new(關鍵字) goto(保留字) 會報錯<br>ex. synchronizedLegend, newValue 是可以的</p>
+<p>4.不可包含空格，以下例子會報錯<br>ex. hello world, best method</p>
+<p>5.嚴格區分大小寫，helloWorld與helloworld是不一樣的兩個職別字</p>
+<h2 id="命名規範"><a href="#命名規範" class="headerlink" title="命名規範"></a>命名規範</h2><p>不遵守編譯不會報錯，但維護的人會爆氣，遵循命名規範不但好閱讀，也避免自己的開發中因為大小寫錯誤而報錯。</p>
+<p>1.package名：全部為小寫<br>ex. com.hello.controller, com.hello.model</p>
+<p>2.類名和介面名：若識別字是由兩個或兩個以上的單字組成，每個單字的第一個字母大寫，其餘小寫，稱為帕斯卡命名規範（PascalNamingConvention）<br>ex. HelloWorld, HttpServletRequest, Runnable, List, ArrayList, BlackShiba</p>
+<p>3.方法名和變數名：若識別字是由兩個或兩個以上的單字組成，第一個單字全小寫，而後每個單字的第一個字母大寫，其餘小寫，此種命名法看起來像駱駝，因此稱為駱駝式命名規範（camelNamingConvention）<br>ex. doGet, doPost, compareTo, equals, ofPattern, getDayOfWeek</p>
+<p>4.常數：全部大寫<br>ex. EAST, MAX, MIN, API_CONSTANTS</p>
+<p><img src="https://miro.medium.com/max/1400/1*fwUPsDFlvLbRNJC9vJxkvg.png" alt="來自維基百科的駱駝"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=qbaVqgt91ro&ab_channel=%E5%B0%9A%E7%A1%85%E8%B0%B7%E6%95%99%E8%82%B2">尚圭谷教學影片</a><br><a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html">Oracle/javase</a></p>
 
     </div>
 
@@ -273,10 +266,13 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2021/01/13/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D2-%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E8%88%87%E8%A6%8F%E7%AF%84/" rel="next" title="每天一杯Java-D2-命名規則與規範">
-      每天一杯Java-D2-命名規則與規範 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/01/07/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D1-%E6%96%B0%E6%89%8B%E5%9B%B0%E6%83%91%E8%A9%9E%E5%BD%99%E9%9B%86%E5%90%88/" rel="prev" title="每天一杯Java-D1 新手困惑詞彙集合">
+      <i class="fa fa-chevron-left"></i> 每天一杯Java-D1 新手困惑詞彙集合
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/15/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D3-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E5%B0%81%E8%A3%9D/" rel="next" title="每天一杯Java-D3-淺談物件導向:封裝">
+      每天一杯Java-D3-淺談物件導向:封裝 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -336,7 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%96%8B%E5%A0%B4%E5%B0%8F%E8%81%8A-%E9%82%A3%E4%BA%9B%E7%BF%BB%E6%88%90%E4%B8%AD%E6%96%87%E4%B9%9F%E7%9C%8B%E4%B8%8D%E6%87%82%E7%9A%84%E8%8B%B1%E6%96%87"><span class="nav-number">1.</span> <span class="nav-text">開場小聊-那些翻成中文也看不懂的英文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-API-Application-Programming-Interface-%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E4%BB%8B%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">1.API - Application Programming Interface 應用程式介面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-OOP-Object-Oriented-Programming-%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%B7%A8%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">2.OOP - Object Oriented Programming 物件導向編程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-JDK-JRE-JVM-Java-Developmet-Kit-Java%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7%E5%8C%85"><span class="nav-number">4.</span> <span class="nav-text">3.JDK&#x2F;JRE&#x2F;JVM&#x2F; - Java Developmet Kit Java開發工具包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-JRE-Jave-Runtime-Environment-Java%E9%81%8B%E8%A1%8C%E7%92%B0%E5%A2%83"><span class="nav-number">5.</span> <span class="nav-text">4.JRE - Jave Runtime Environment Java運行環境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-JVM-Java-Virtual-Machine-Java%E8%99%9B%E6%93%AC%E6%A9%9F%E5%99%A8"><span class="nav-number">6.</span> <span class="nav-text">5.JVM - Java Virtual Machine  Java虛擬機器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">7.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%96%8B%E5%A0%B4%E5%B0%8F%E8%81%8A-%E5%88%B0%E5%BA%95%E6%98%AF%E5%A4%A7%E5%AF%AB%E9%82%84%E6%98%AF%E5%B0%8F%E5%AF%AB"><span class="nav-number">1.</span> <span class="nav-text">開場小聊-到底是大寫還是小寫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AD%98%E5%88%A5%E5%AD%97-Identifier"><span class="nav-number">2.</span> <span class="nav-text">識別字 Identifier</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87"><span class="nav-number">3.</span> <span class="nav-text">Java命名規則</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E8%A6%8F%E7%AF%84"><span class="nav-number">4.</span> <span class="nav-text">命名規範</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

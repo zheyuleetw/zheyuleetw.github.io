@@ -20,30 +20,35 @@
     var CONFIG = {"hostname":"zheyuleetw.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="技術星球轉圈圈">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZheYu&#39;s Blog">
-<meta property="og:url" content="https://zheyuleetw.github.io/index.html">
+  <meta name="description" content="extends關鍵字的使用首先，Java中使用extends關鍵字有幾個規則：  一個類可以被多個類繼承 一個類只能繼承一個父類，即所謂單繼承 可以分為間接繼承與直接繼承，假設有三個類ABC，B繼承於A，C繼承於B，則AB的關係是直接繼承，AC的關係則為間接繼承。  繼承性 復用性  由於我們上一篇每天一杯Java-D3-淺談物件導向:封裝使用單例模式舉例，空建構子為私有，繼承時會報錯如下：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每天一杯Java-D4-淺談物件導向:繼承">
+<meta property="og:url" content="https://zheyuleetw.github.io/2021/01/17/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D4-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E7%B9%BC%E6%89%BF/index.html">
 <meta property="og:site_name" content="ZheYu&#39;s Blog">
-<meta property="og:description" content="技術星球轉圈圈">
+<meta property="og:description" content="extends關鍵字的使用首先，Java中使用extends關鍵字有幾個規則：  一個類可以被多個類繼承 一個類只能繼承一個父類，即所謂單繼承 可以分為間接繼承與直接繼承，假設有三個類ABC，B繼承於A，C繼承於B，則AB的關係是直接繼承，AC的關係則為間接繼承。  繼承性 復用性  由於我們上一篇每天一杯Java-D3-淺談物件導向:封裝使用單例模式舉例，空建構子為私有，繼承時會報錯如下：">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-01-17T07:33:45.000Z">
+<meta property="article:modified_time" content="2021-04-10T08:47:56.551Z">
 <meta property="article:author" content="ZheYu Lee">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="OOP">
+<meta property="article:tag" content="Shiba">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zheyuleetw.github.io/">
+<link rel="canonical" href="https://zheyuleetw.github.io/2021/01/17/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D4-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E7%B9%BC%E6%89%BF/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-TW'
   };
 </script>
 
-  <title>ZheYu's Blog</title>
+  <title>每天一杯Java-D4-淺談物件導向:繼承 | ZheYu's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6ZF12NBWTM"></script>
     <script>
@@ -167,9 +172,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
@@ -185,10 +191,9 @@
       <meta itemprop="name" content="ZheYu's Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/17/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D4-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E7%B9%BC%E6%89%BF/" class="post-title-link" itemprop="url">每天一杯Java-D4-淺談物件導向:繼承</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          每天一杯Java-D4-淺談物件導向:繼承
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -227,7 +232,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="extends關鍵字的使用"><a href="#extends關鍵字的使用" class="headerlink" title="extends關鍵字的使用"></a>extends關鍵字的使用</h2><p>首先，Java中使用extends關鍵字有幾個規則：</p>
+        <h2 id="extends關鍵字的使用"><a href="#extends關鍵字的使用" class="headerlink" title="extends關鍵字的使用"></a>extends關鍵字的使用</h2><p>首先，Java中使用extends關鍵字有幾個規則：</p>
 <ol>
 <li>一個類可以被多個類繼承</li>
 <li>一個類只能繼承一個父類，即所謂<em>單繼承</em></li>
@@ -264,264 +269,35 @@
 
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/">jdk1.8 API</a><br><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/java/concepts/index.html">The Java Tutorials</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ArTiU9HR5Kw&list=PLmOn9nNkQxJH0qBIrtV6otI0Ep4o2q67A&index=258&ab_channel=%E5%B0%9A%E7%A1%85%E8%B0%B7IT%E5%9F%B9%E8%AE%AD%E5%AD%A6%E6%A0%A1">尚圭谷教學影片</a></p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/OOP/" rel="tag"># OOP</a>
+              <a href="/tags/Shiba/" rel="tag"># Shiba</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://zheyuleetw.github.io/2021/01/15/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D3-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E5%B0%81%E8%A3%9D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ZheYu Lee">
-      <meta itemprop="description" content="技術星球轉圈圈">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZheYu's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/15/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D3-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E5%B0%81%E8%A3%9D/" class="post-title-link" itemprop="url">每天一杯Java-D3-淺談物件導向:封裝</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-01-15 14:29:00" itemprop="dateCreated datePublished" datetime="2021-01-15T14:29:00+08:00">2021-01-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-04-10 16:25:09" itemprop="dateModified" datetime="2021-04-10T16:25:09+08:00">2021-04-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Backend/" itemprop="url" rel="index"><span itemprop="name">Backend</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="開場小聊-萬事萬物皆物件，先默念三遍。"><a href="#開場小聊-萬事萬物皆物件，先默念三遍。" class="headerlink" title="開場小聊-萬事萬物皆物件，先默念三遍。"></a>開場小聊-萬事萬物皆物件，先默念三遍。</h2><p>物件導向遠遠的看是陌生的怪物，仔細地端看卻覺得十分熟悉貼近生活，從物件導向三大特性的角度觀察，封裝、繼承以及多態（或有一說為四大特性，包含抽象性），我感覺特別像人類、動物或是宇宙中任何物件之間的關係，大多是在狀態和表現上同中求異或是異中求同，尚圭谷IT學校的影集<a href="(https://www.youtube.com/watch?v=ArTiU9HR5Kw&list=PLmOn9nNkQxJH0qBIrtV6otI0Ep4o2q67A&index=258&ab_channel=%E5%B0%9A%E7%A1%85%E8%B0%B7IT%E5%9F%B9%E8%AE%AD%E5%AD%A6%E6%A0%A1">30天搞定Java核心技術</a>中，老師時常說道萬事萬物皆物件，越寫程式真是越有感覺，本篇的內容部分是我自己的體會，部分則是由網路資源學習而來，若有錯誤之處請寫信告訴我，謝謝！</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/15/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D3-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E5%B0%81%E8%A3%9D/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://zheyuleetw.github.io/2021/01/13/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D2-%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E8%88%87%E8%A6%8F%E7%AF%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ZheYu Lee">
-      <meta itemprop="description" content="技術星球轉圈圈">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZheYu's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/13/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D2-%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E8%88%87%E8%A6%8F%E7%AF%84/" class="post-title-link" itemprop="url">每天一杯Java-D2-命名規則與規範</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-01-13 14:04:09" itemprop="dateCreated datePublished" datetime="2021-01-13T14:04:09+08:00">2021-01-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-04-10 15:12:40" itemprop="dateModified" datetime="2021-04-10T15:12:40+08:00">2021-04-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Backend/" itemprop="url" rel="index"><span itemprop="name">Backend</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="開場小聊-到底是大寫還是小寫"><a href="#開場小聊-到底是大寫還是小寫" class="headerlink" title="開場小聊-到底是大寫還是小寫"></a>開場小聊-到底是大寫還是小寫</h2><p>剛開始練習用Java語言撰寫程式時不懂的命名規則的重要性，因爲規模小，類或物件的方法和變數沒有那麼龐雜，在呼叫方法和使用變數時，即便忘了當初的命名也可以回頭輕鬆查找，然而，當程式越長越巨，有上百上千個變數時，沒有規則的命名撰寫時容易出錯，甚至成了拖慢開發速度的累贅，因此養成命名的好習慣對我來說相當重要，不但方便開發，維護也少了許多坑，這篇就來談談Java命名規則與規範。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/13/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D2-%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E8%88%87%E8%A6%8F%E7%AF%84/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/15/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D3-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E5%B0%81%E8%A3%9D/" rel="prev" title="每天一杯Java-D3-淺談物件導向:封裝">
+      <i class="fa fa-chevron-left"></i> 每天一杯Java-D3-淺談物件導向:封裝
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://zheyuleetw.github.io/2021/01/07/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D1-%E6%96%B0%E6%89%8B%E5%9B%B0%E6%83%91%E8%A9%9E%E5%BD%99%E9%9B%86%E5%90%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ZheYu Lee">
-      <meta itemprop="description" content="技術星球轉圈圈">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZheYu's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/07/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D1-%E6%96%B0%E6%89%8B%E5%9B%B0%E6%83%91%E8%A9%9E%E5%BD%99%E9%9B%86%E5%90%88/" class="post-title-link" itemprop="url">每天一杯Java-D1 新手困惑詞彙集合</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-01-07 21:50:21" itemprop="dateCreated datePublished" datetime="2021-01-07T21:50:21+08:00">2021-01-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-04-10 15:10:02" itemprop="dateModified" datetime="2021-04-10T15:10:02+08:00">2021-04-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Backend/" itemprop="url" rel="index"><span itemprop="name">Backend</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="開場小聊-那些翻成中文也看不懂的英文"><a href="#開場小聊-那些翻成中文也看不懂的英文" class="headerlink" title="開場小聊-那些翻成中文也看不懂的英文"></a>開場小聊-那些翻成中文也看不懂的英文</h2><p>2020年9月底剛從半導體轉軟體時，時常令我困惑的是那些看起來高冷的英文縮寫，散發神秘又高貴的氣息，其實踏入新的領域都無法避免這段用語熟悉陣痛期，然而，我感受到軟體工程的用語特別百花齊放，也特別的抽象，剛接觸程式語言時有海量的英文縮寫要理解，有些是說十遍也說不清的，我的經驗是聽不懂不需心急，先將表面的定義刻在心底，待時光一點一滴琢磨，隨著編程經歷增加會不斷有新的體會的，這裡就回憶一下當初令我頭痛的幾個縮寫，也順便複習與理清我的理解是否正確。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/07/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D1-%E6%96%B0%E6%89%8B%E5%9B%B0%E6%83%91%E8%A9%9E%E5%BD%99%E9%9B%86%E5%90%88/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -574,6 +350,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#extends%E9%97%9C%E9%8D%B5%E5%AD%97%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">extends關鍵字的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B9%BC%E6%89%BF%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">繼承性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
