@@ -173,173 +173,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://zheyuleetw.github.io/2021/04/10/Angular%E5%B0%8F%E9%81%8A%E6%88%B2-Round1-%E7%B5%84%E4%BB%B6%E9%96%93%E6%BA%9D%E9%80%9A%E5%9B%9B%E7%A8%AE%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="ZheYu Lee">
-      <meta itemprop="description" content="技術星球轉圈圈">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZheYu's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/10/Angular%E5%B0%8F%E9%81%8A%E6%88%B2-Round1-%E7%B5%84%E4%BB%B6%E9%96%93%E6%BA%9D%E9%80%9A%E5%9B%9B%E7%A8%AE%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Angular小遊戲-Round1-組件間溝通四種方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-              
-
-              <time title="創建時間：2021-04-10 17:07:46 / 修改時間：17:25:20" itemprop="dateCreated datePublished" datetime="2021-04-10T17:07:46+08:00">2021-04-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Frontend/" itemprop="url" rel="index"><span itemprop="name">Frontend</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="開場小聊"><a href="#開場小聊" class="headerlink" title="開場小聊"></a>開場小聊</h2><p>以Angular撰寫而成的程式是由不同的模組（Module）組成，模組則由不同的組件（component）組成，不同組件共享同一份數據是很常見的行為，由於組件與組件之間相互獨立，<br>因此必須要透過特殊的方法讓數據在組件之間傳遞，假設是兩個組件要共享或是傳遞數據，依據這兩個組件的關係與傳遞方向，有不同的共享以及傳遞方式，這次以black-shiba和mouth-of-shiba這兩個組件溝通作為範例。</p>
-<h2 id="父組件與子組件關係說明"><a href="#父組件與子組件關係說明" class="headerlink" title="父組件與子組件關係說明"></a>父組件與子組件關係說明</h2><p>在這個範例中，我們用以下兩個指令新增black-shiba和mouth-of-shiba兩個組件</p>
-<p><code>ng g c black-shiba</code></p>
-<p><code>ng g c mouth-of-shiba</code></p>
-<p>並在black-shiba的html檔案中加上mouth-of-shiba的標籤如下</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">app-mouth-of-shiba</span>&gt;</span><span class="tag">&lt;/<span class="name">app-mouth-of-shiba</span>&gt;</span> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>如此以來，這兩個組件的關係為，back-shiba為父組件，而mouth-of-shiba子組件，因為mouth-of-shiba被包含在back-shiba內。</p>
-<h2 id="父組件傳向子組件：使用-Input"><a href="#父組件傳向子組件：使用-Input" class="headerlink" title="父組件傳向子組件：使用@Input()"></a>父組件傳向子組件：使用@Input()</h2><ol>
-<li>子組件的ts檔案中使用<code>@Input( )</code> 修飾子修飾變數，用於接住從父組件傳來的資料，記得必須引入 Input </li>
-</ol>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Component, Input &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">&#x27;app-mouth-of-shiba&#x27;</span>,</span><br><span class="line">  templateUrl: <span class="string">&#x27;./mouth-of-shiba.component.html&#x27;</span>,</span><br><span class="line">  styleUrls: [<span class="string">&#x27;./mouth-of-shiba.component.css&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">MouthOfShibaComponent</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Input</span>() message: <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>父組件的ts檔案中宣告要傳遞給子組件的變數</li>
-</ol>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">&#x27;app-black-shiba&#x27;</span>,</span><br><span class="line">  templateUrl: <span class="string">&#x27;./black-shiba.component.html&#x27;</span>,</span><br><span class="line">  styleUrls: [<span class="string">&#x27;./black-shiba.component.css&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">BlackShibaComponent</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  message: <span class="built_in">string</span> = <span class="string">&#x27;我想吃肉肉&#x27;</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>於父組件html檔案中將子組件的標籤加上data biding指令，用於將父組件的變數傳遞給子組件。</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;app-mouth-<span class="keyword">of</span>-shiba [message]=<span class="string">&quot;message&quot;</span>&gt;&lt;/app-mouth-<span class="keyword">of</span>-shiba&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>4.成功將blackshiba的message傳遞給mouth-of-shiba</p>
-<p><img src="https://miro.medium.com/max/1400/1*XtiSGoubZNLLfnMiF7ZVoQ.png" alt="@Input修飾子範例結果"></p>
-<h2 id="子組件傳向父組件之一：使用-Output-以及-EventEmitter"><a href="#子組件傳向父組件之一：使用-Output-以及-EventEmitter" class="headerlink" title="子組件傳向父組件之一：使用@Output( ) 以及 EventEmitter"></a>子組件傳向父組件之一：使用@Output( ) 以及 EventEmitter</h2><ol>
-<li>於子組件的ts檔案中使用<code>@Output( )</code>修飾子修飾 EventEmitter物件，並寫個方法調用 EventEmitter的emit方法，將訊息發射給父組件，記得引入 Output和EventEmitter</li>
-</ol>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Component, Output, EventEmitter &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">&#x27;app-mouth-of-shiba&#x27;</span>,</span><br><span class="line">  templateUrl: <span class="string">&#x27;./mouth-of-shiba.component.html&#x27;</span>,</span><br><span class="line">  styleUrls: [<span class="string">&#x27;./mouth-of-shiba.component.css&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">MouthOfShibaComponent</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Output</span>() messageEmitter = <span class="keyword">new</span> EventEmitter();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">sendMessage</span>(<span class="params">str: <span class="built_in">string</span></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.messageEmitter.emit(str)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>在父組件的ts檔案中宣告一個變數和方法，用於接住從子組件傳過來的訊息</li>
-</ol>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">&#x27;app-black-shiba&#x27;</span>,</span><br><span class="line">  templateUrl: <span class="string">&#x27;./black-shiba.component.html&#x27;</span>,</span><br><span class="line">  styleUrls: [<span class="string">&#x27;./black-shiba.component.css&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">BlackShibaComponent</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  message: <span class="built_in">string</span> = <span class="string">&#x27; &#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">receiveMessage</span>(<span class="params">$event</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.message = $event;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>在子組件的html檔案中新增一個按鈕，用於click事件觸發訊息發射</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">&quot;sendMessage(&#x27;需要刷牙了&#x27;)&quot;</span>&gt;</span>傳送訊息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>於父組件的html檔案中的子組件標籤加上 EventEmitter的事件綁定，觸發父組件的接受訊息的方法。</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">app-mouth-of-shiba</span> (<span class="attr">messageEmitter</span>)=<span class="string">&quot;receiveMessage($event)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">app-mouth-of-shiba</span>&gt;</span></span><br><span class="line">mouth-of-shiba說&#123;&#123;message&#125;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>成功將mouth-of-shiba的message傳遞給black-shiba<br><img src="https://cdn-images-1.medium.com/max/1600/1*wux55ksi91flPgqtlrF0Fw.png" alt="@Output修飾子範例結果"></li>
-</ol>
-<h2 id="子組件傳向父組件之二：使用-ViewChild"><a href="#子組件傳向父組件之二：使用-ViewChild" class="headerlink" title="子組件傳向父組件之二：使用@ViewChild()"></a>子組件傳向父組件之二：使用@ViewChild()</h2><ol>
-<li>在父組件中引入ViewChild以及子組件，使用@ViewChild( )修飾子修飾子組件，並且寫一個方法用於接收子組件的訊息</li>
-</ol>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Component, ViewChild &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; MouthOfShibaComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;../mouth-of-shiba/mouth-of-shiba.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">&#x27;app-black-shiba&#x27;</span>,</span><br><span class="line">  templateUrl: <span class="string">&#x27;./black-shiba.component.html&#x27;</span>,</span><br><span class="line">  styleUrls: [<span class="string">&#x27;./black-shiba.component.css&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">BlackShibaComponent</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@ViewChild</span>(MouthOfShibaComponent) mouthOfShiba: MouthOfShibaComponent;</span><br><span class="line">  message: <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">receiveMessage</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.message = <span class="built_in">this</span>.mouthOfShiba.message;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>父組件的html中新增一個按鈕，並綁定click事件觸發寫好的方法將子組件的值賦給父組件的變數</li>
-</ol>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;app-mouth-<span class="keyword">of</span>-shiba&gt;&lt;/app-mouth-<span class="keyword">of</span>-shiba&gt;</span><br><span class="line">&lt;button (click)=<span class="string">&quot;receiveMessage()&quot;</span>&gt;接受訊息&lt;/button&gt; &lt;br&gt; </span><br><span class="line">mouth-<span class="keyword">of</span>-shiba說&#123;&#123;message&#125;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>當按下按鈕時，原本父組件中未賦值的message就被賦值了子組件中message的值</li>
-</ol>
-<p><img src="https://miro.medium.com/max/1400/1*eEcFhuqoA3rrZGHo1KYU0g.png" alt="@Output修飾子範例結果"></p>
-<p>不過在使用ViewChild時有兩個要注意的地方，第一點是要使用ViewChild一定要在父組件的html中存在子組件的標籤，否則無法初始化ViewChild，第二點是ViewChild的初始化在視圖渲染之後，這點我們可以透過父組件實作OnInt和AfterViewInit來證實：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AfterViewInit, Component, OnInit, ViewChild &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; MouthOfShibaComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;../mouth-of-shiba/mouth-of-shiba.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">&#x27;app-black-shiba&#x27;</span>,</span><br><span class="line">  templateUrl: <span class="string">&#x27;./black-shiba.component.html&#x27;</span>,</span><br><span class="line">  styleUrls: [<span class="string">&#x27;./black-shiba.component.css&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">BlackShibaComponent</span> <span class="title">implements</span> <span class="title">OnInit</span>, <span class="title">AfterViewInit</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@ViewChild</span>(MouthOfShibaComponent) mouthOfShiba: MouthOfShibaComponent;</span><br><span class="line">  message: <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// this.message = this.mouthOfShiba.message</span></span><br><span class="line">    <span class="comment">//ERROR TypeError: Cannot read property &#x27;message&#x27; of undefined</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">ngOnInit</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// this.message = this.mouthOfShiba.message;</span></span><br><span class="line">    <span class="comment">//ERROR TypeError: Cannot read property &#x27;message&#x27; of undefined</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">ngAfterViewInit</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.message = <span class="built_in">this</span>.mouthOfShiba.message;</span><br><span class="line">    <span class="comment">//success!</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>在建構子、ngOnInit方法中調用ViewChild的屬性都會報錯尚未定義，而在ngAfterViewInit方法中則可以成功調用。</p>
-<h2 id="不相關的組件：使用BehaviorSubject以及Service"><a href="#不相關的組件：使用BehaviorSubject以及Service" class="headerlink" title="不相關的組件：使用BehaviorSubject以及Service"></a>不相關的組件：使用BehaviorSubject以及Service</h2><p>不相關的組件必須透過Service來傳遞訊息，所以實際上是組件1、組件2以及服務三者之間的訊息交流。</p>
-<ol>
-<li><p>首先用<code>ng g s message</code>指令新增message服務</p>
-</li>
-<li><p>於服務中宣告一個message並賦值。</p>
-</li>
-<li><p>於服務中從rxjs引入BehaviorSubject，並且用BehaviorSubject的建構子，傳入初始化訊息（this.message）來新增BehaviorSubject物件</p>
-</li>
-<li><p>調用BehaviorSubject物件的asObservable方法，調用此方法會返回一個可觀察物件，我用sharedMessage變數接住。</p>
-</li>
-<li><p>新增一個updateMessage方法，傳入參數為message，在方法內調用BehaviorSubject的next方法，傳入message，這個方法非常重要，他通知了所有已訂閱sharedMessage可觀察物件的組件已經有了新的訊息。</p>
-</li>
-</ol>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; BehaviorSubject &#125; <span class="keyword">from</span> <span class="string">&#x27;rxjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>(&#123;</span><br><span class="line">  providedIn: <span class="string">&#x27;root&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  message: <span class="built_in">string</span> = <span class="string">&#x27;good morning&#x27;</span></span><br><span class="line">  <span class="keyword">public</span> messageBehavior = <span class="keyword">new</span> BehaviorSubject(<span class="built_in">this</span>.message);</span><br><span class="line">  sharedMessage = <span class="built_in">this</span>.messageBehavior.asObservable();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.sharedMessage.subscribe(<span class="function"><span class="params">message</span> =&gt;</span> <span class="built_in">this</span>.message = message)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">updateMessage</span>(<span class="params">message: <span class="built_in">string</span></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.messageBehavior.next(message)</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>於組件1和組件2中引入我們剛剛創建的服務，並在建構子注入，接著在建構子體內訂閱sharedMessage，因為組件1和組件2的代碼一模一樣，這邊不重複貼代碼</li>
-</ol>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; MessageService &#125; <span class="keyword">from</span> <span class="string">&#x27;../message.service&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">&#x27;app-mouth-of-shiba&#x27;</span>,</span><br><span class="line">  templateUrl: <span class="string">&#x27;./mouth-of-shiba.component.html&#x27;</span>,</span><br><span class="line">  styleUrls: [<span class="string">&#x27;./mouth-of-shiba.component.css&#x27;</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">MouthOfShibaComponent</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  message: <span class="built_in">string</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">public</span> service: MessageService</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.service.sharedMessage.subscribe(<span class="function"><span class="params">message</span> =&gt;</span> <span class="built_in">this</span>.message = message)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="7">
-<li>在組件1和組件2的html檔案新增按鈕，綁定click事件，觸發服務的updateMessage方法</li>
-</ol>
-<p>組件1：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">&quot;this.service.updateMessage(&#x27;該刷牙了&#x27;)&quot;</span>&gt;</span>發送mouth-of-shiba訊息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span>&#123;&#123;message&#125;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>組件2：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">&quot;this.service.updateMessage(&#x27;我想要吃肉肉&#x27;)&quot;</span>&gt;</span>發送blackshiba訊息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span>&#123;&#123;message&#125;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="8">
-<li>最後我們可以看到成果</li>
-</ol>
-<p>一開始的訊息為服務中初始化的good morning</p>
-<p><img src="https://miro.medium.com/max/1400/1*u-5_tIn6ahB-eeCLAQcViA.png" alt="good morning"></p>
-<p>按下black-shiba組件的按鈕時，訊息都更新為我要吃肉肉</p>
-<p><img src="https://miro.medium.com/max/1400/1*dMyZUTvftREJXj1Dqil0Hw.png" alt="我想要吃肉肉"></p>
-<p>按下mouth-of-shiba組件的按鈕時，訊息都更新為該刷牙了</p>
-<p><img src="https://miro.medium.com/max/1400/1*p70d-S98Hwjw2hqRkpLddQ.png" alt="該刷牙了"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://zheyuleetw.github.io/2021/01/17/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D4-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E7%B9%BC%E6%89%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -484,6 +317,87 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/01/15/%E6%AF%8F%E5%A4%A9%E4%B8%80%E6%9D%AFJava-D3-%E6%B7%BA%E8%AB%87%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91-%E5%B0%81%E8%A3%9D/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://zheyuleetw.github.io/2021/01/14/Angular%E5%B0%8F%E9%81%8A%E6%88%B2-Round1-%E7%B5%84%E4%BB%B6%E9%96%93%E6%BA%9D%E9%80%9A%E5%9B%9B%E7%A8%AE%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="ZheYu Lee">
+      <meta itemprop="description" content="技術星球轉圈圈">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZheYu's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/14/Angular%E5%B0%8F%E9%81%8A%E6%88%B2-Round1-%E7%B5%84%E4%BB%B6%E9%96%93%E6%BA%9D%E9%80%9A%E5%9B%9B%E7%A8%AE%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Angular小遊戲-Round1-組件間溝通四種方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-01-14 17:07:46" itemprop="dateCreated datePublished" datetime="2021-01-14T17:07:46+08:00">2021-01-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-04-10 17:27:05" itemprop="dateModified" datetime="2021-04-10T17:27:05+08:00">2021-04-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Frontend/" itemprop="url" rel="index"><span itemprop="name">Frontend</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="開場小聊"><a href="#開場小聊" class="headerlink" title="開場小聊"></a>開場小聊</h2><p>以Angular撰寫而成的程式是由不同的模組（Module）組成，模組則由不同的組件（component）組成，不同組件共享同一份數據是很常見的行為，由於組件與組件之間相互獨立，<br>因此必須要透過特殊的方法讓數據在組件之間傳遞，假設是兩個組件要共享或是傳遞數據，依據這兩個組件的關係與傳遞方向，有不同的共享以及傳遞方式，這次以black-shiba和mouth-of-shiba這兩個組件溝通作為範例。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/14/Angular%E5%B0%8F%E9%81%8A%E6%88%B2-Round1-%E7%B5%84%E4%BB%B6%E9%96%93%E6%BA%9D%E9%80%9A%E5%9B%9B%E7%A8%AE%E6%96%B9%E6%B3%95/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>
